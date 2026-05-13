@@ -84,7 +84,7 @@
     .home-stat-div { width: 1px; background: var(--border); align-self: stretch; margin: 0 4px; }
 
     /* ── HOW IT WORKS ── */
-    .hiw-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; flex: 1; margin-top: 20px; }
+    .hiw-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; flex: 1; margin-top: 20px; }
     .hiw-card { background: var(--card); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 28px 24px; display: flex; flex-direction: column; position: relative; }
     .hiw-num { width: 48px; height: 48px; border-radius: 50%; background: var(--bg); border: 2px solid var(--yellow); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 900; color: var(--yellow); margin-bottom: 18px; }
     .hiw-card h3 { font-size: 18px; font-weight: 800; margin-bottom: 10px; }
@@ -193,7 +193,7 @@
       .tab-panel { padding: 16px; }
       .home-grid { grid-template-columns: 1fr; }
       .home-right { display: none; }
-      .hiw-grid, .dads-grid { grid-template-columns: 1fr; overflow-y: auto; }
+      .hiw-grid, .dads-grid { grid-template-columns: 1fr 1fr; overflow-y: auto; }
       .svc-grid { grid-template-columns: repeat(2,1fr); overflow-y: auto; }
       .pricing-grid { grid-template-columns: 1fr; overflow-y: auto; }
       .contractor-inner, .app-inner { grid-template-columns: 1fr; overflow-y: auto; }
@@ -314,8 +314,8 @@
     <div class="tab-panel" id="tab-hiw">
       <div class="hiw-header">
         <span class="eyebrow">How it Works</span>
-        <h2>Three Ways to Ask a <span class="text-yellow">DAD</span></h2>
-        <p>Start with AI, escalate to a real DAD — we meet you wherever you need help most.</p>
+        <h2>Four Ways to Get <span class="text-yellow">DAD</span> Help</h2>
+        <p>Start with AI, escalate to a real DAD, or bring a pro directly to your door — we meet you wherever you need help most.</p>
       </div>
       <div class="hiw-grid">
         <div class="hiw-card">
@@ -343,6 +343,15 @@
           <div style="margin-top:auto">
             <span class="hiw-price">$50 / session · Verified DADs</span>
             <div style="margin-top:14px;"><a href="https://cal.com/chris-besnett-lg2gea" target="_blank" class="btn btn-ghost btn-full">Find a Community DAD</a></div>
+          </div>
+        </div>
+        <div class="hiw-card">
+          <div class="hiw-num">4</div>
+          <h3>Hire from the Contractor Network</h3>
+          <p>When you need boots on the ground, we connect you with vetted local contractors from our trusted network. Licensed pros who've been screened and backed by the Quick Ask DAD standard — quality work, fair pricing, no guesswork.</p>
+          <div style="margin-top:auto">
+            <span class="hiw-price">$89 / month · For Contractors</span>
+            <div style="margin-top:14px;"><a href="https://buy.stripe.com/test_aFacMYeg12N108i25m5sA00" target="_blank" class="btn btn-ghost btn-full">Join the Network</a></div>
           </div>
         </div>
       </div>

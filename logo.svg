@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 64">
+  <!-- DAD wordmark -->
+  <text x="0" y="50"
+        font-family="'Arial Black', 'Impact', 'Haettenschweiler', sans-serif"
+        font-weight="900"
+        font-size="58"
+        fill="#FFFFFF"
+        letter-spacing="-2">D</text>
+  <text x="68" y="50"
+        font-family="'Arial Black', 'Impact', 'Haettenschweiler', sans-serif"
+        font-weight="900"
+        font-size="58"
+        fill="#EDB800"
+        letter-spacing="-2">A</text>
+  <text x="136" y="50"
+        font-family="'Arial Black', 'Impact', 'Haettenschweiler', sans-serif"
+        font-weight="900"
+        font-size="58"
+        fill="#FFFFFF"
+        letter-spacing="-2">D</text>
+  <!-- Tagline -->
+  <text x="110" y="62"
+        font-family="'Arial', sans-serif"
+        font-size="7"
+        font-weight="600"
+        fill="#EDB800"
+        text-anchor="middle"
+        letter-spacing="2">HOME REPAIR • DAD ADVICE • COMMUNITY</text>
+</svg>

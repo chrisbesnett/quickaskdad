@@ -37,8 +37,8 @@
 
     /* ── NAV ── */
     .nav { height: 60px; background: rgba(22,24,29,.96); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; padding: 0 28px; }
-    .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 16px; }
-    .nav-logo-icon { width: 32px; height: 32px; background: var(--yellow); border-radius: 7px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .nav-logo { display: flex; align-items: center; }
+    .nav-logo img { height: 38px; width: auto; display: block; }
     .nav-actions { display: flex; align-items: center; gap: 10px; }
     .btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 9px 20px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 700; cursor: pointer; border: 1.5px solid transparent; transition: all .15s; white-space: nowrap; }
     .btn-primary { background: var(--yellow); color: #16181D; border-color: var(--yellow); }
@@ -208,10 +208,7 @@
   <!-- NAV -->
   <nav class="nav">
     <a href="#" class="nav-logo" onclick="showTab('home')">
-      <div class="nav-logo-icon">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16181D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-      </div>
-      Quick Ask <span class="text-yellow">&nbsp;DAD</span>
+      <img src="logo.svg" alt="Quick Ask DAD">
     </a>
     <div class="nav-actions">
       <a href="https://cal.com/chris-besnett-lg2gea/founding-dad" target="_blank" class="btn btn-ghost">Book a Call</a>
@@ -261,6 +258,7 @@
     <div class="tab-panel active" id="tab-home">
       <div class="home-grid">
         <div>
+          <img src="logo.svg" alt="Quick Ask DAD" style="height:72px;width:auto;display:block;margin-bottom:20px;">
           <div class="home-tag"><span class="home-dot"></span> Real DADs. Real Answers. Real Fast.</div>
           <h1 class="home-h1">Get Expert Help From a <span class="text-yellow">DAD</span> Who's Done It</h1>
           <p class="home-sub">From leaky pipes to tax season — get instant AI answers, book a live call with the Founder DAD (20 years in the trades, father of 8), or connect with a community DAD near you.</p>

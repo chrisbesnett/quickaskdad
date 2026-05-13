@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About the Founder DAD — Quick Ask DAD</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:      #16181D;
+      --bg-alt:  #1B1D24;
+      --card:    #1E2028;
+      --card2:   #22242C;
+      --yellow:  #EDB800;
+      --ydim:    rgba(237,184,0,.10);
+      --yborder: rgba(237,184,0,.28);
+      --border:  rgba(255,255,255,.07);
+      --text:    #FFFFFF;
+      --muted:   rgba(255,255,255,.52);
+      --dim:     rgba(255,255,255,.22);
+      --radius:  14px;
+      --radius-sm: 8px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 80px 0; }
+    .section-alt { background: var(--bg-alt); }
+    .eyebrow { font-size: 11px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--yellow); margin-bottom: 10px; display: block; }
+    .text-yellow { color: var(--yellow); }
+
+    /* BUTTONS */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 28px; border-radius: var(--radius-sm); font-size: 15px; font-weight: 700; cursor: pointer; border: 2px solid transparent; transition: all .18s; white-space: nowrap; }
+    .btn-primary { background: var(--yellow); color: #16181D; border-color: var(--yellow); }
+    .btn-primary:hover { background: #C99E00; transform: translateY(-1px); box-shadow: 0 6px 24px rgba(237,184,0,.28); }
+    .btn-ghost { background: transparent; color: var(--text); border-color: var(--border); }
+    .btn-ghost:hover { border-color: var(--yborder); color: var(--yellow); }
+    .btn-full { width: 100%; }
+    .btn-lg { padding: 18px 36px; font-size: 16px; border-radius: 10px; }
+
+    /* NAV */
+    .nav { position: sticky; top: 0; z-index: 100; background: rgba(22,24,29,.94); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 17px; }
+    .nav-logo-icon { width: 36px; height: 36px; background: var(--yellow); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .nav-back { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--muted); transition: color .15s; }
+    .nav-back:hover { color: var(--yellow); }
+    .nav-actions { display: flex; align-items: center; gap: 10px; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; }
+    .hamburger span { width: 22px; height: 2px; background: var(--text); border-radius: 2px; display: block; }
+    .mobile-nav { display: none; background: var(--bg); border-top: 1px solid var(--border); padding: 16px 24px 24px; flex-direction: column; gap: 4px; }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a { padding: 13px 0; font-size: 16px; font-weight: 600; color: var(--muted); border-bottom: 1px solid var(--border); display: block; }
+    .mobile-nav .btn { margin-top: 12px; }
+
+    /* HERO */
+    .hero { padding: 72px 0 64px; }
+    .hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .hero-tag { display: inline-flex; align-items: center; gap: 8px; background: var(--ydim); border: 1px solid var(--yborder); border-radius: 99px; padding: 6px 16px; font-size: 13px; font-weight: 600; color: var(--yellow); margin-bottom: 20px; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(32px, 5vw, 52px); font-weight: 900; line-height: 1.1; margin-bottom: 16px; }
+    .hero-sub { font-size: 17px; color: var(--muted); line-height: 1.8; margin-bottom: 32px; }
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero-visual { background: var(--card); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 36px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+    .avatar { width: 88px; height: 88px; border-radius: 50%; background: var(--yellow); display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; }
+    .roles { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 16px; }
+    .role-tag { background: var(--card2); border: 1px solid var(--border); border-radius: 99px; padding: 5px 14px; font-size: 12px; font-weight: 600; color: var(--muted); }
+
+    /* STATS */
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 52px; }
+    .stat-card { background: var(--card); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 24px 20px; text-align: center; transition: border-color .2s; }
+    .stat-card:hover { border-color: var(--yborder); }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 900; color: var(--yellow); line-height: 1; }
+    .stat-label { font-size: 13px; color: var(--muted); margin-top: 6px; line-height: 1.4; }
+
+    /* STORY */
+    .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .story-text h2 { font-family: 'Playfair Display', serif; font-size: clamp(26px, 3.5vw, 36px); font-weight: 900; line-height: 1.2; margin-bottom: 20px; }
+    .story-text p { font-size: 16px; color: var(--muted); line-height: 1.85; margin-bottom: 18px; }
+    .story-text p strong { color: var(--text); }
+    .quote-block { background: var(--card); border-left: 3px solid var(--yellow); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 20px 24px; margin: 24px 0; }
+    .quote-block p { font-size: 16px; color: var(--text); line-height: 1.75; font-style: italic; margin: 0; }
+
+    /* TIMELINE */
+    .timeline { position: relative; padding-left: 32px; }
+    .timeline::before { content: ''; position: absolute; left: 7px; top: 6px; bottom: 0; width: 2px; background: var(--border); }
+    .tl-item { position: relative; margin-bottom: 32px; }
+    .tl-dot { position: absolute; left: -32px; top: 4px; width: 14px; height: 14px; border-radius: 50%; background: var(--card); border: 2px solid var(--yellow); }
+    .tl-year { font-size: 11px; font-weight: 800; color: var(--yellow); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+    .tl-title { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .tl-company { font-size: 14px; color: var(--yellow); font-weight: 600; margin-bottom: 6px; }
+    .tl-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+    /* CREDENTIALS */
+    .cred-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
+    .cred-card { background: var(--card); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 20px; transition: border-color .2s; }
+    .cred-card:hover { border-color: var(--yborder); }
+    .cred-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--ydim); border: 1px solid var(--yborder); display: flex; align-items: center; justify-content: center; color: var(--yellow); margin-bottom: 12px; }
+    .cred-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+    .cred-card p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+    /* TESTIMONIAL */
+    .testimonial { background: var(--card2); border: 1.5px solid var(--yborder); border-radius: var(--radius); padding: 36px 40px; text-align: center; max-width: 720px; margin: 0 auto; }
+    .testimonial p { font-size: 18px; color: var(--text); line-height: 1.8; font-style: italic; margin-bottom: 20px; }
+    .testimonial-author { font-size: 14px; font-weight: 700; color: var(--yellow); }
+    .testimonial-role { font-size: 13px; color: var(--muted); margin-top: 4px; }
+    .quote-mark { font-family: 'Playfair Display', serif; font-size: 64px; color: var(--yellow); line-height: .7; margin-bottom: 12px; opacity: .5; }
+
+    /* BOOK SECTION */
+    .book-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px; }
+    .book-card { background: var(--card); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 32px; display: flex; flex-direction: column; }
+    .book-card.featured { border-color: var(--yellow); background: var(--card2); }
+    .book-price { font-family: 'Playfair Display', serif; font-size: 44px; font-weight: 900; color: var(--yellow); line-height: 1; margin: 10px 0 4px; }
+    .book-price span { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 500; color: var(--muted); }
+    .book-card h3 { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+    .book-card p { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 24px; flex: 1; }
+    .check-row { display: flex; align-items: center; gap: 10px; padding: 11px 0; border-bottom: 1px solid var(--border); font-size: 14px; color: var(--muted); }
+    .check-row:last-of-type { border-bottom: none; margin-bottom: 20px; }
+
+    /* FOOTER */
+    .footer { background: var(--bg-alt); border-top: 1px solid var(--border); padding: 40px 0 28px; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .footer p { font-size: 13px; color: var(--dim); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .section { padding: 56px 0; }
+      .nav-actions { display: none; }
+      .hamburger { display: flex; }
+      .hero-inner { grid-template-columns: 1fr; gap: 36px; }
+      .hero-visual { display: none; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .story-grid { grid-template-columns: 1fr; }
+      .cred-grid { grid-template-columns: 1fr 1fr; }
+      .book-inner { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16181D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+      </div>
+      Quick Ask <span class="text-yellow">&nbsp;DAD</span>
+    </a>
+    <a href="index.html" class="nav-back">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to Home
+    </a>
+    <div class="nav-actions">
+      <a href="https://cal.com/chris-besnett-lg2gea/founding-dad" target="_blank" class="btn btn-ghost" style="font-size:13px;padding:10px 20px;">Book a Call</a>
+      <a href="https://buy.stripe.com/REPLACE_75_SESSION_STRIPE_LINK" target="_blank" class="btn btn-primary" style="font-size:13px;padding:10px 20px;">Book — $75/session</a>
+    </div>
+    <button class="hamburger" onclick="toggleNav()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html">← Back to Home</a>
+    <a href="https://cal.com/chris-besnett-lg2gea/founding-dad" target="_blank">Book a Call</a>
+    <a href="https://buy.stripe.com/REPLACE_75_SESSION_STRIPE_LINK" target="_blank" class="btn btn-primary" style="margin-top:16px;">Book — $75/session</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-tag">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Faith-Driven · Family-First · Community-Built
+        </div>
+        <h1>Builder. Founder. <span class="text-yellow">Problem Solver.</span></h1>
+        <p class="hero-sub">I started in the trades at 18 and spent the next two decades getting really good at one thing: making things work. QuickAskDAD is what happens when you take 20 years of that and give it to everyone.</p>
+        <div class="hero-btns">
+          <a href="https://cal.com/chris-besnett-lg2gea/founding-dad" target="_blank" class="btn btn-primary btn-lg">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Book a Session — $75
+          </a>
+          <a href="mailto:info@quickaskdad.com" class="btn btn-ghost btn-lg">Get in Touch</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="avatar">
+          <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#16181D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <h3 style="font-size:20px;font-weight:800;margin-bottom:4px;">The Founder DAD</h3>
+        <p style="font-size:13px;color:var(--yellow);font-weight:600;margin-bottom:4px;">Rosemount, MN</p>
+        <p style="font-size:13px;color:var(--muted);margin-bottom:16px;">Founder &amp; CEO, QuickAskDAD.com</p>
+        <div class="roles">
+          <span class="role-tag">Trades Expert</span>
+          <span class="role-tag">Platform Founder</span>
+          <span class="role-tag">Facilities Leader</span>
+          <span class="role-tag">Former Firefighter</span>
+          <span class="role-tag">Father of 8</span>
+          <span class="role-tag">Faith-Driven</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-num">20+</div>
+        <div class="stat-label">Years in the Trades</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">750+</div>
+        <div class="stat-label">Jobs Completed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">$80K+</div>
+        <div class="stat-label">Annual Revenue — Zero Paid Ads</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">8</div>
+        <div class="stat-label">Kids. Family of 10.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="story-grid">
+      <div class="story-text">
+        <span class="eyebrow">My Story</span>
+        <h2>I Didn't Build This From a <span class="text-yellow">Boardroom</span></h2>
+        <p>I built it from 20 years of crawling through crawl spaces, rewiring outlets at 10pm for a single mom who couldn't afford a $300 service call, and fixing things people didn't know how to fix.</p>
+        <div class="quote-block">
+          <p>"I never upsold. I never fluffed a quote. I gave the same price to the mansion on the hill that I gave to the house in the tough neighborhood. That's not a business strategy — that's a conviction."</p>
+        </div>
+        <p>During COVID, I started Agape Handyman Services from scratch. <strong>$80,000+ a year. 750+ jobs. Zero paid ads.</strong> Just trust, skill, and a work ethic that doesn't clock out.</p>
+        <p>Every job I took — from 2 full basement builds to a dozen kitchen remodels — required the same skill: <strong>building trust before asking for results.</strong> They didn't pick me because I had the best website. They picked me because they could trust my word and my skill backed it up.</p>
+        <p>QuickAskDAD is what happens when you take that conviction and give it to everyone.</p>
+      </div>
+      <div>
+        <span class="eyebrow">Career Timeline</span>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">2024 – Present</div>
+            <div class="tl-title">Founder &amp; CEO</div>
+            <div class="tl-company">QuickAskDAD.com</div>
+            <div class="tl-desc">Built an AI-powered home repair platform solo while working full-time. 3-tier model connecting homeowners with AI, expert DADs, and contractors.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">2024 – Present</div>
+            <div class="tl-title">Building Supervisor</div>
+            <div class="tl-company">Westwood Community Church · Rosemount, MN</div>
+            <div class="tl-desc">Multi-site facilities oversight, maintenance, vendor management, and capital projects.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">2020 – 2024</div>
+            <div class="tl-title">Owner &amp; Lead Operator</div>
+            <div class="tl-company">Agape Handyman Services · Rosemount, MN</div>
+            <div class="tl-desc">100% referral-based. $80K+/year. 750+ jobs. 2 full basements, 3 decks, 12+ kitchen &amp; bath remodels, 3 full house remodels. Zero paid marketing.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">2022 – 2023</div>
+            <div class="tl-title">Interim Kids Co-Director</div>
+            <div class="tl-company">Creative Church</div>
+            <div class="tl-desc">Grew volunteer team from 42 to 250 members across 2 campuses in under 6 months. Led Easter, VBS, and Christmas events.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">2020 – 2021</div>
+            <div class="tl-title">Facilities Director</div>
+            <div class="tl-company">Southland City Church · Rosemount, MN</div>
+            <div class="tl-desc">Managed multi-campus facilities, renovation projects, preventive maintenance, emergency action planning, and teams of up to 15 volunteers.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">2016 – 2020</div>
+            <div class="tl-title">Shop Manager</div>
+            <div class="tl-company">Gardner Builders · Savage, MN</div>
+            <div class="tl-desc">Scaled tool &amp; equipment inventory from $250,000 (1 shop) to $2,000,000 (3 shops) — an 8x increase over 4 years.</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">2009 – 2020</div>
+            <div class="tl-title">Firefighter &amp; Lieutenant</div>
+            <div class="tl-company">City of Rosemount Fire Department</div>
+            <div class="tl-desc">11 years of service. Promoted to Lieutenant in 2015. Firefighter of the Year 2015. Founded the Explorer Program — back-to-back MN state championship wins (2017, 2018). Explorer Advisor of the Year, Scouts of America (2019).</div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-year">2006 – 2016</div>
+            <div class="tl-title">Laborer → Superintendent</div>
+            <div class="tl-company">Valley Lake Flooring · Apple Valley, MN</div>
+            <div class="tl-desc">Started in the trades at 18. Promoted to superintendent, leading crews of 5 across the Twin Cities metro on commercial &amp; residential projects.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CREDENTIALS -->
+<section class="section">
+  <div class="container">
+    <div class="text-center">
+      <span class="eyebrow">Credentials</span>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(26px,3.5vw,36px);font-weight:900;">20+ Certifications Across <span class="text-yellow">Trades, Safety & Leadership</span></h2>
+    </div>
+    <div class="cred-grid">
+      <div class="cred-card">
+        <div class="cred-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <h4>Construction &amp; Trades</h4>
+        <p>OSHA 10 · Moisture Mitigation (Ardex, Koster, Aquafin) · Confined Spaces · Silica Exposure · Welding (Torch/Air Arc)</p>
+      </div>
+      <div class="cred-card">
+        <div class="cred-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h4>Emergency Services</h4>
+        <p>Firefighter I &amp; II · Hazmat Operations · Emergency Medical Responder · ICS-100/200/700 (FEMA/NIMS) · CPR/AED/First Aid</p>
+      </div>
+      <div class="cred-card">
+        <div class="cred-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h4>Leadership &amp; Operations</h4>
+        <p>Fire Service Leadership Development (34-Hour, MN Board) · Mental Health First Aid USA · Procore Safety Qualified · Explorer Advisor of the Year — Scouts of America</p>
+      </div>
+      <div class="cred-card">
+        <div class="cred-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h4>Facilities Management</h4>
+        <p>Multi-site facilities oversight · Vendor management · Capital project oversight · DOT fleet maintenance · Emergency action planning</p>
+      </div>
+      <div class="cred-card">
+        <div class="cred-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <h4>Trades Knowledge</h4>
+        <p>HVAC · Electrical · Plumbing · Structural repairs · Roofing · Flooring · Full remodels · Deck builds · Basement finishing</p>
+      </div>
+      <div class="cred-card">
+        <div class="cred-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h4>Platform &amp; Business</h4>
+        <p>SaaS platform strategy · Contractor marketplace design · Tiered subscription models · Referral-based sales · Community building</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:40px;">
+      <span class="eyebrow">What People Say</span>
+    </div>
+    <div class="testimonial">
+      <div class="quote-mark">"</div>
+      <p>Chris is one of the most organized and service-driven men I know. He oversaw an entire church renovation — finished ahead of schedule, turned an outdated space into something state of the art. He did all this on top of his full-time job. A man of integrity who leads by example.</p>
+      <div class="testimonial-author">Andy Cossette, CCIC</div>
+      <div class="testimonial-role">AVP, Territory Leader · Zurich Insurance</div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK A SESSION -->
+<section class="section">
+  <div class="container">
+    <div class="text-center">
+      <span class="eyebrow">Book a Session</span>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(26px,3.5vw,36px);font-weight:900;">Ready to Talk to the <span class="text-yellow">Founder DAD?</span></h2>
+      <p style="color:var(--muted);font-size:17px;margin-top:12px;max-width:500px;margin-left:auto;margin-right:auto;">30 minutes. Real answers. No upsells. Pick what works for you.</p>
+    </div>
+    <div class="book-inner">
+
+      <div class="book-card featured">
+        <span class="eyebrow">Founder DAD Session</span>
+        <h3>1-on-1 with the Founder DAD</h3>
+        <div class="book-price">$75<span>/30 min</span></div>
+        <p>Live call with the Founder DAD — 20+ years in the trades, father of 8, zero upsells. Bring any question: home repair, finances, life, or business.</p>
+        <div class="check-row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EDB800" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Live 30-minute call</div>
+        <div class="check-row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EDB800" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Any topic — trades, taxes, life, business</div>
+        <div class="check-row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EDB800" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Zero upsells guaranteed</div>
+        <div class="check-row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EDB800" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Book instantly on Cal.com</div>
+        <a href="https://cal.com/chris-besnett-lg2gea/founding-dad" target="_blank" class="btn btn-primary btn-full" style="margin-top:8px;">Book on Cal.com</a>
+        <a href="https://buy.stripe.com/REPLACE_75_SESSION_STRIPE_LINK" target="_blank" class="btn btn-ghost btn-full" style="margin-top:10px;">Pay via Stripe</a>
+      </div>
+
+      <div class="book-card">
+        <span class="eyebrow">Not Sure Yet?</span>
+        <h3>Try AI DAD First</h3>
+        <div class="book-price" style="color:var(--text);">$4.99<span>/mo</span></div>
+        <p>Get instant answers 24/7 from our AI trained on real DAD knowledge. Start here — upgrade to a live call anytime.</p>
+        <div class="check-row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EDB800" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Unlimited questions</div>
+        <div class="check-row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EDB800" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> All categories covered</div>
+        <div class="check-row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EDB800" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Available 24/7</div>
+        <div class="check-row"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EDB800" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Cancel anytime</div>
+        <a href="https://buy.stripe.com/test_aFacMYeg12N108i25m5sA00" target="_blank" class="btn btn-primary btn-full" style="margin-top:8px;">Start for $4.99/mo</a>
+        <a href="index.html#pricing" class="btn btn-ghost btn-full" style="margin-top:10px;">See All Plans</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16181D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+      Quick Ask <span class="text-yellow">&nbsp;DAD</span>
+    </a>
+    <p>© 2024 Quick Ask DAD · <a href="mailto:info@quickaskdad.com" style="color:var(--yellow);">info@quickaskdad.com</a></p>
+    <a href="index.html" class="btn btn-ghost" style="font-size:13px;padding:9px 20px;">← Back to Home</a>
+  </div>
+</footer>
+
+<script>
+  function toggleNav() {
+    document.getElementById('mobileNav').classList.toggle('open');
+  }
+  document.addEventListener('click', function(e) {
+    const nav = document.getElementById('mobileNav');
+    if (!nav.contains(e.target) && !e.target.closest('.hamburger')) {
+      nav.classList.remove('open');
+    }
+  });
+</script>
+</body>
+</html>

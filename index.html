@@ -97,15 +97,33 @@
 
     /* ── SERVICES ── */
     .svc-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; flex: 1; margin-top: 18px; }
-    .svc-card { background: var(--card); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 18px 16px; transition: all .18s; cursor: default; display: flex; flex-direction: column; }
-    .svc-card:hover { border-color: var(--yellow); transform: translateY(-2px); }
-    .svc-icon { width: 40px; height: 40px; border: 1.5px solid var(--border); border-radius: 9px; display: flex; align-items: center; justify-content: center; color: var(--muted); margin-bottom: 10px; transition: all .18s; }
+    .svc-card { background: var(--card); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 20px 18px; transition: all .18s; cursor: pointer; display: flex; flex-direction: column; }
+    .svc-card:hover { border-color: var(--yellow); transform: translateY(-2px); background: var(--card2); }
+    .svc-icon { width: 40px; height: 40px; border: 1.5px solid var(--border); border-radius: 9px; display: flex; align-items: center; justify-content: center; color: var(--muted); margin-bottom: 12px; transition: all .18s; }
     .svc-card:hover .svc-icon { border-color: var(--yellow); color: var(--yellow); background: var(--ydim); }
-    .svc-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+    .svc-card h3 { font-size: 17px; font-weight: 800; margin-bottom: 5px; letter-spacing: -.2px; }
     .svc-card p { font-size: 12px; color: var(--muted); line-height: 1.5; }
+    .svc-tap-hint { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--yellow); margin-top: auto; padding-top: 12px; opacity: .7; }
     .svc-header { display: flex; align-items: flex-end; justify-content: space-between; }
     .svc-header h2 { font-family: 'Playfair Display', serif; font-size: clamp(22px,2.5vw,30px); font-weight: 900; }
     .svc-header p { color: var(--muted); font-size: 13px; max-width: 340px; text-align: right; }
+    /* ── Service Modal ── */
+    .svc-modal { position: fixed; inset: 0; background: rgba(0,0,0,.7); z-index: 1000; display: flex; align-items: flex-end; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .25s; }
+    .svc-modal.open { opacity: 1; pointer-events: all; }
+    .svc-modal-panel { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 18px 18px 0 0; width: 100%; max-width: 720px; max-height: 82vh; display: flex; flex-direction: column; transform: translateY(40px); transition: transform .28s cubic-bezier(.32,1,.3,1); }
+    .svc-modal.open .svc-modal-panel { transform: translateY(0); }
+    .svc-modal-head { display: flex; align-items: flex-start; justify-content: space-between; padding: 24px 28px 16px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+    .svc-modal-eyebrow { font-size: 10px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: var(--yellow); margin-bottom: 4px; }
+    .svc-modal-head h2 { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900; }
+    .svc-modal-close { width: 34px; height: 34px; border-radius: 50%; background: var(--card); border: 1px solid var(--border); color: var(--muted); font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all .15s; }
+    .svc-modal-close:hover { background: var(--yellow); color: #000; border-color: var(--yellow); }
+    .svc-modal-list { overflow-y: auto; flex: 1; padding: 8px 0; }
+    .svc-list-item { display: flex; align-items: center; gap: 14px; padding: 11px 28px; border-bottom: 1px solid var(--border); font-size: 14px; transition: background .12s; }
+    .svc-list-item:last-child { border-bottom: none; }
+    .svc-list-item:hover { background: var(--card); }
+    .svc-list-num { width: 26px; height: 26px; border-radius: 50%; background: var(--bg); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: var(--yellow); flex-shrink: 0; }
+    .svc-modal-foot { padding: 16px 28px; border-top: 1px solid var(--border); flex-shrink: 0; display: flex; gap: 10px; }
+    .svc-modal-foot .btn { flex: 1; justify-content: center; }
 
     /* ── PRICING ── */
     .pricing-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; flex: 1; margin-top: 18px; }
@@ -356,45 +374,71 @@
         <p>Blue collar trades and office-DAD knowledge — all in one platform.</p>
       </div>
       <div class="svc-grid">
-        <div class="svc-card">
+        <div class="svc-card" onclick="openService('plumbing')">
           <div class="svc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
           <h3>Plumbing & Water</h3>
           <p>Leaks, clogs, water heaters, pipe repairs, toilets.</p>
+          <div class="svc-tap-hint">View 50 Common Issues →</div>
         </div>
-        <div class="svc-card">
+        <div class="svc-card" onclick="openService('electrical')">
           <div class="svc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
           <h3>Electrical</h3>
           <p>Outlets, breakers, fans, lighting, panel questions.</p>
+          <div class="svc-tap-hint">View 50 Common Issues →</div>
         </div>
-        <div class="svc-card">
+        <div class="svc-card" onclick="openService('hvac')">
           <div class="svc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
           <h3>HVAC & Heating</h3>
           <p>AC units, furnaces, filters, thermostats, duct issues.</p>
+          <div class="svc-tap-hint">View 50 Common Issues →</div>
         </div>
-        <div class="svc-card">
+        <div class="svc-card" onclick="openService('roofing')">
           <div class="svc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><line x1="9" y1="22" x2="9" y2="12"/><line x1="15" y1="12" x2="15" y2="17"/></svg></div>
           <h3>Roofing & Exterior</h3>
           <p>Shingles, gutters, siding, waterproofing, decks.</p>
+          <div class="svc-tap-hint">View 50 Common Issues →</div>
         </div>
-        <div class="svc-card">
+        <div class="svc-card" onclick="openService('taxes')">
           <div class="svc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
           <h3>Taxes & Budgeting</h3>
           <p>Filing basics, deductions, budgets, financial planning.</p>
+          <div class="svc-tap-hint">View 50 Common Issues →</div>
         </div>
-        <div class="svc-card">
+        <div class="svc-card" onclick="openService('appliances')">
           <div class="svc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
           <h3>Appliances</h3>
           <p>Washers, dryers, dishwashers, fridges, stoves.</p>
+          <div class="svc-tap-hint">View 50 Common Issues →</div>
         </div>
-        <div class="svc-card">
+        <div class="svc-card" onclick="openService('tech')">
           <div class="svc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
           <h3>Tech & Smart Home</h3>
           <p>WiFi, smart devices, security cams, TV mounts.</p>
+          <div class="svc-tap-hint">View 50 Common Issues →</div>
         </div>
-        <div class="svc-card">
+        <div class="svc-card" onclick="openService('outdoor')">
           <div class="svc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></div>
           <h3>Grilling & Outdoor</h3>
           <p>BBQ tips, fire pits, lawn care, outdoor projects.</p>
+          <div class="svc-tap-hint">View 50 Common Issues →</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SERVICE MODAL ── -->
+    <div class="svc-modal" id="svc-modal" onclick="if(event.target===this)closeService()">
+      <div class="svc-modal-panel">
+        <div class="svc-modal-head">
+          <div>
+            <div class="svc-modal-eyebrow">50 Common Issues &amp; Tasks</div>
+            <h2 id="svc-modal-title"></h2>
+          </div>
+          <button class="svc-modal-close" onclick="closeService()">✕</button>
+        </div>
+        <div class="svc-modal-list" id="svc-modal-list"></div>
+        <div class="svc-modal-foot">
+          <a href="#" class="btn btn-primary" onclick="closeService();showTab('app');return false;">Ask a DAD About This</a>
+          <a href="https://cal.com/chris-besnett-lg2gea/founding-dad" target="_blank" class="btn btn-ghost">Book a Call</a>
         </div>
       </div>
     </div>
@@ -625,6 +669,75 @@
   }
   function openMobile() { document.getElementById('mobileMenu').classList.add('open'); }
   function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
+
+  const SVC_DATA = {
+    plumbing: {
+      title: 'Plumbing & Water',
+      items: [
+        'Leaky faucet — dripping won\'t stop','Running toilet — constant water flow','Low water pressure throughout home','Clogged kitchen drain','Clogged toilet — plunger not working','Burst or cracked pipe','Water heater not producing hot water','Water heater making popping or rumbling noise','No hot water at all','Slow-draining bathroom sink','Garbage disposal jammed or humming','Garbage disposal completely dead','Leak under the kitchen sink','Toilet rocking or loose at base','Toilet won\'t flush or handle is broken','Showerhead with weak or uneven pressure','Shower drain clogged with hair or debris','Bathtub not draining at all','Sump pump not turning on','How to find and shut off the main water valve','Water pressure too high (above 80 PSI)','Banging pipes (water hammer) when water turns off','Frozen pipes — prevention and thawing','Water softener not regenerating or bypassed','Under-sink water filter installation and maintenance','Outdoor hose bib leaking or frozen','Hose bib (spigot) replacement','Washing machine water supply hose replacement','Dishwasher not draining after cycle','Refrigerator ice maker water line connection','Toilet tank slow to fill or not filling','Wax ring replacement for toilet','Visible pipe corrosion or green buildup','Sewage smell coming from drains','Sewer line backup in basement or yard','Grease buildup causing slow kitchen drain','How to read your water meter','Sudden spike in water bill — finding the cause','Tankless water heater flushing and descaling','Water heater anode rod inspection and replacement','P-trap replacement under sink','Shower valve cartridge replacement','Tub spout diverter repair or replacement','Expansion tank inspection on water heater','Pressure reducing valve (PRV) adjustment','Backflow preventer test and replacement','Sprinkler system winterization / blowout','Pool plumbing — pump and filter basics','Well pump pressure tank troubleshooting','Septic system basics — pumping schedule and signs of failure'
+      ]
+    },
+    electrical: {
+      title: 'Electrical',
+      items: [
+        'Circuit breaker keeps tripping','Outlet completely dead — no power','GFCI outlet won\'t reset','Light switch not turning on lights','Installing a dimmer switch','Ceiling fan installation — no existing wiring','Ceiling fan wobbling or making noise','Recessed (can) lighting installation','Flickering lights throughout house','Dead outlet — checking if it\'s a tripped GFCI upstream','Difference between 2-prong and 3-prong outlets','Outlet sparked when I plugged something in','How to add a new outlet to an existing wall','Running new wire through finished walls','When to upgrade your electrical panel','Double-tapped breaker — is it safe?','Aluminum wiring in older home — what to do','Smoke detector chirping every 30 seconds','Carbon monoxide detector placement and testing','Installing a weatherproof outdoor outlet','GFCI vs AFCI breakers — when each is required','Whole-home surge protector installation','Portable vs standby generator hookup','Manual transfer switch installation basics','EV charger (Level 2) installation requirements','Hot tub 240V subpanel and wiring','240V dryer or range outlet installation','Subpanel installation in garage or workshop','How to read your electric meter','Troubleshooting a power outage in one room','Knob-and-tube wiring — is it safe and what to do','Replacing an old light fixture','Chandelier installation — weight and wiring concerns','Under-cabinet LED lighting installation','Smart light switch (no neutral wire workaround)','3-way switch wiring — two switches one light','4-way switch wiring — three or more switches','USB outlet installation','Bathroom exhaust fan installation and venting','Attic fan thermostat wiring','Low-voltage landscape lighting installation','Doorbell wiring — mechanical to digital','Video doorbell wiring and transformer upgrade','Security system basic wiring','Home theater in-wall cable management','Running Cat6 Ethernet through walls','Conduit types — when and how to use','Junction box installation and cover requirements','Wire gauge selection for circuits','How to read a basic wiring diagram'
+      ]
+    },
+    hvac: {
+      title: 'HVAC & Heating',
+      items: [
+        'AC running but not cooling the house','Furnace not producing heat','Thermostat unresponsive or showing wrong temp','How often to change your air filter','How to find the right filter size for your system','AC making loud banging or squealing noise','Furnace making rattling or booming noise at startup','Heat pump not heating or cooling properly','AC unit freezing up — ice on the coils','Signs of refrigerant leak in AC system','Ductwork leaks causing uneven temps','One room always too hot or too cold','Entire side of house won\'t heat or cool','Humidity too high — condensation on windows','Humidity too low — static electricity and dry skin','Carbon monoxide risk from gas furnace','Standing pilot light went out — how to relight','Electronic igniter not sparking on furnace','Blower motor running constantly or not at all','Capacitor failure — AC won\'t start','Contactor replacement on AC condenser','Cleaning outdoor condenser coils','Cleaning indoor evaporator coils','Condensate drain pan overflowing','Condensate line clog — how to clear it','Mini-split (ductless) installation basics','Window AC unit installation and BTU sizing','Portable AC venting and drainage','Attic ventilation — ridge vent vs soffit vent','Whole-house fan installation and usage','Bathroom exhaust fan not removing steam','Kitchen range hood — vented vs recirculating','Dryer vent cleaning — fire hazard warning signs','Zone control HVAC system basics','Programmable thermostat scheduling setup','Smart thermostat installation (Nest, Ecobee)','Gas line sizing for new furnace','Annual furnace tune-up checklist','Annual AC tune-up checklist','Professional duct cleaning — is it worth it?','HEPA air purifier vs whole-home air cleaner','UV air treatment system installation','Radiant floor heat troubleshooting','Electric baseboard heater not working','Heat strip backup in heat pump systems','Geothermal heat pump basics','Oil furnace troubleshooting and annual maintenance','Boiler system — pressure and expansion tank','Bleeding a radiator in a hot water system','Hydronic (hot water) baseboard heat balancing'
+      ]
+    },
+    roofing: {
+      title: 'Roofing & Exterior',
+      items: [
+        'Missing or blown-off shingles','Active roof leak — finding the source inside','Tracing a roof leak from attic to source','Step flashing and counter flashing repair','Chimney flashing failure and resealing','Skylight leaking around the frame','Ice dams — prevention and safe removal','Gutter cleaning — frequency and technique','Gutter guard types and installation','Gutter spike vs screw replacement — sagging gutters','Downspout extension to redirect water from foundation','Fascia board rot repair or replacement','Soffit damage — repair and ventilation','Vinyl siding repair — cracked or warped panels','Vinyl siding installation basics','Wood siding rot — locating and replacing','Stucco crack repair — hairline vs structural','Brick mortar repair (tuckpointing)','Caulking around windows and doors — best products','Foggy double-pane window — seal failure','Door weatherstripping replacement','Foundation crack — hairline vs structural concern','Crawl space moisture and vapor barrier','Basement waterproofing — interior vs exterior','Driveway crack sealing and resurfacing','Concrete crack repair — expansion vs structural','Deck building basics — ledger board and footings','Deck board replacement — hidden fasteners','Deck staining, sealing, and refinishing schedule','Fence post repair — leaning or broken post','Wood fence staining and sealing','Pressure washing — deck, siding, and concrete safe PSI','Exterior painting prep and best paints','Trim painting — caulk, prime, and paint sequence','Sliding or hinged screen door repair','Garage door — lubrication and tune-up','Garage door opener — programming and safety sensors','Storm door installation','Exterior shutters installation','Porch repair — rot and structural issues','Paver patio installation — base prep and leveling','Retaining wall block installation','Grading and drainage fix — water pooling near house','Window well installation and cover','Roof vent boot replacement — common leak source','Ridge vent vs box vent — which is better','Blown-in attic insulation — DIY vs pro','Spray foam insulation — air sealing an attic','Crawl space vapor barrier installation','Egress window installation for legal bedroom'
+      ]
+    },
+    taxes: {
+      title: 'Taxes & Budgeting',
+      items: [
+        'First-time tax filing — where to start','W-2 vs 1099 — what\'s the difference?','Self-employment tax — how it works and what to set aside','Home office deduction — requirements and calculation','Mortgage interest deduction — how to claim it','Property tax deduction limits after TCJA','Home improvement tax credit — what qualifies','Energy-efficient upgrade credits (windows, HVAC, solar)','Child tax credit — eligibility and current amount','Dependent care FSA and childcare tax credit','Filing status — single, MFJ, MFS, HOH differences','Standard deduction vs itemizing — how to decide','Filing a tax extension — what it does and doesn\'t do','IRS payment plan (installment agreement) setup','Dealing with back taxes — options and penalties','Responding to an IRS audit or letter','HSA contributions — limits and tax advantages','401(k) basics — contribution limits and employer match','Traditional IRA vs Roth IRA — which is better?','Social Security basics — when to claim','Medicare — Parts A, B, C, D explained','Term vs whole life insurance — what dads need to know','Filing a homeowner\'s insurance claim','Filing an auto insurance claim without losing your rate','Building a monthly budget that actually works','Emergency fund — how much and where to keep it','Debt snowball vs debt avalanche method','Improving your credit score — fastest legal ways','How to read your credit report','Disputing an error on your credit report','Paying off credit card debt — best strategies','Student loan repayment options and forgiveness programs','Refinancing a mortgage — when it makes sense','Home equity loan vs HELOC — which to use','Cost of living comparison before a big move','Saving for kids\' college — 529 plan basics','529 plan contribution rules and state deductions','Estate planning basics for a young family','Writing a simple will — what it covers','Power of attorney — financial and medical','Living trust basics — do you need one?','Rental property income and expense tracking for taxes','Tax implications of selling your home','Capital gains tax — short vs long term','Gift tax annual exclusion rules','LLC vs sole proprietorship for a side business','Tracking business expenses for self-employed','Mileage deduction — standard rate vs actual cost','Quarterly estimated tax payments — deadlines and amounts','Simple bookkeeping system for a small business'
+      ]
+    },
+    appliances: {
+      title: 'Appliances',
+      items: [
+        'Refrigerator not cooling but freezer works','Freezer not reaching proper temperature','Ice maker stopped making ice','Refrigerator making loud humming or clicking noise','Washing machine not spinning or agitating','Washing machine leaking from front or bottom','Washer not draining — pump filter clog','Dryer not heating — thermal fuse check','Dryer taking multiple cycles to dry clothes','Dryer making squealing or thumping noise','Dishwasher not cleaning dishes properly','Dishwasher not draining after cycle','Dishwasher leaking onto floor','Dishwasher making grinding or loud noise','Oven not reaching set temperature','Oven runs hot or cold — calibration fix','Gas stove burner won\'t light or weak flame','Gas range igniter clicking constantly','Microwave not heating food','Microwave door latch won\'t close or latch','Range hood filter cleaning — grease buildup','Garbage disposal humming but not spinning','Garbage disposal reset button location','Water softener salt bridge — how to break it','Gas water heater pilot light out — relight steps','Water heater temperature adjustment — safe setting','Tankless water heater descaling (flushing)','Central vacuum system — loss of suction','Sump pump maintenance and float switch test','Dehumidifier not collecting water or icing up','Air purifier filter replacement schedule','Steam cleaner — descaling and maintenance','Gas pressure washer maintenance and storage','Lawn mower oil change and blade sharpening','Leaf blower carburetor cleaning','Chainsaw chain sharpening and tension','Generator — oil change and annual service','Snow blower — belt replacement and auger prep','Garage door opener — force adjustment and limit settings','Smart lock battery replacement and re-pairing','Video doorbell — motion zone setup and chime wiring','Intercom system troubleshooting','Pool pump — prime and backwash procedure','Hot tub water chemistry basics','Pellet stove auger jam and cleaning','Wood stove insert — annual inspection and cleaning','Gas fireplace — pilot assembly and thermopile test','Whole-house water filter cartridge change','Instant hot water dispenser maintenance','Trash compactor — ram won\'t go down fix'
+      ]
+    },
+    tech: {
+      title: 'Tech & Smart Home',
+      items: [
+        'WiFi dead spots — finding and fixing them','Router placement for best whole-home coverage','Mesh WiFi network setup (Eero, Orbi, Google Nest)','WiFi extender vs mesh network — which to choose','Smart thermostat installation (Nest, Ecobee, Honeywell)','Smart lock installation and code setup','Video doorbell installation and existing wiring check','Security camera placement — coverage best practices','NVR/DVR home security system setup','Smart light switch installation — with and without neutral wire','Smart dimmer switch compatibility check','Alexa vs Google Home — which ecosystem to choose','Apple HomeKit setup and Home app configuration','Smart hub selection — SmartThings, Hubitat, Home Assistant','Automating lights — schedules, scenes, and routines','Motion sensor light setup inside and outside','Smart garage door opener installation','EV charger smart scheduling and energy tracking','Smart sprinkler controller setup (Rachio, RainBird)','Leak detection sensor placement — under sinks and water heater','Smart smoke and CO detector (Nest Protect) setup','Z-Wave smart smoke detector integration','Whole-home audio — Sonos vs Denon HEOS setup','Sonos speaker pairing and grouping','TV wall mount installation — stud finding and leveling','TV wall mount types — fixed, tilt, full-motion','Hiding TV cables in the wall — in-wall conduit kit','Surround sound setup — 5.1 vs 7.1 vs Atmos','HDMI ARC vs eARC — what\'s compatible','Home theater projector and screen setup','Cable management — raceways, velcro, and in-wall','Running Cat6 Ethernet through walls — best tools','Ethernet vs WiFi for gaming and streaming','Network switch — when you need one and setup','NAS home server basics — storage and media streaming','Home VPN setup for remote access','Smart plug energy monitoring — identifying power hogs','Solar panel production monitoring apps','Home energy audit — tools and apps to find waste','Smart appliance integration — LG ThinQ, Samsung SmartThings','Matter and Thread protocol — what it means for smart home','Zigbee vs Z-Wave vs WiFi devices — pros and cons','Home automation routines — morning, away, bedtime','IFTTT vs native automations — when to use each','Streaming device setup (Roku, Fire TV, Apple TV)','Smart TV picture settings optimization','Parental controls on router, TV, and streaming apps','Screen time management across devices','Home office tech setup — monitors, docking, ergonomics','Video conferencing lighting, audio, and background setup'
+      ]
+    },
+    outdoor: {
+      title: 'Grilling & Outdoor',
+      items: [
+        'Gas grill won\'t light — igniter or burner issue','Gas grill flame too low — regulator reset trick','Cleaning grill grates — best methods by material','Deep cleaning a gas grill — burners and grease trap','Replacing gas grill burners — when and how','Grill igniter replacement — push button vs battery','Checking propane tank level without a gauge','Converting a gas grill to natural gas','Charcoal grill setup — kettle vs barrel vs kamado','How to light charcoal without lighter fluid','Chimney starter technique for perfect coals','Briquettes vs lump charcoal — flavor and heat differences','Smoking wood types — which wood pairs with which meat','Offset smoker basics — fire management and temp control','Pellet grill setup and auger priming','Kamado grill basics — heat control and accessories','Two-zone fire setup for searing and indirect cooking','Indirect heat grilling — roasting on a grill','Grill temperature zones — reading your grill','Meat thermometer placement and target temps by meat','Resting meat after cooking — why and how long','Marinade vs dry rub — when to use each','Fire pit installation — safety clearances and materials','Fire pit safety — wind, children, and extinguishing','Outdoor fireplace build — block vs prefab','Propane fire pit assembly and regulator connection','Lawn mowing patterns for a healthy lawn','Lawn fertilizing schedule by season and grass type','Overseeding a thin lawn — best time and method','Lawn aeration — when to do it and rental vs hire','Pre-emergent vs post-emergent weed control','Crabgrass prevention timeline','Sprinkler system zone setup and head adjustment','Drip irrigation system for garden beds','Building a raised garden bed — materials and depth','Composting basics — what to add and when to turn','Tree trimming basics — when to DIY vs call an arborist','Stump removal — grinder vs chemical vs DIY dig','Landscape edging — steel, aluminum, and plastic options','Mulching tips — depth, type, and volcano mulching mistake','Paver patio installation — base compaction and leveling','Flagstone pathway installation on sand or mortar','Retaining wall block installation — drainage and deadmen','Outdoor lighting install — low voltage landscape lighting','String light setup — posts, spans, and load capacity','Solar stake light placement for maximum charge','Teak and hardwood outdoor furniture care and sealing','Outdoor cushion storage and mildew prevention','Winterizing outdoor furniture, grills, and planters','Yard pest control — grubs, ants, mosquitoes, and moles'
+      ]
+    }
+  };
+
+  function openService(key) {
+    const d = SVC_DATA[key];
+    if (!d) return;
+    document.getElementById('svc-modal-title').textContent = d.title;
+    const list = document.getElementById('svc-modal-list');
+    list.innerHTML = d.items.map((item, i) =>
+      `<div class="svc-list-item"><span class="svc-list-num">${i + 1}</span>${item}</div>`
+    ).join('');
+    list.scrollTop = 0;
+    document.getElementById('svc-modal').classList.add('open');
+  }
+
+  function closeService() {
+    document.getElementById('svc-modal').classList.remove('open');
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeService(); });
 </script>
 </body>
 </html>

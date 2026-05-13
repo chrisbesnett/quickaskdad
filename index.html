@@ -84,8 +84,8 @@
     .home-stat-div { width: 1px; background: var(--border); align-self: stretch; margin: 0 4px; }
 
     /* ── HOW IT WORKS ── */
-    .hiw-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; flex: 1; margin-top: 20px; }
-    .hiw-card { background: var(--card); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 28px 24px; display: flex; flex-direction: column; position: relative; }
+    .hiw-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; flex: 1 1 0; min-height: 0; overflow-y: auto; margin-top: 20px; padding-bottom: 8px; }
+    .hiw-card { background: var(--card); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 22px 20px; display: flex; flex-direction: column; position: relative; }
     .hiw-num { width: 48px; height: 48px; border-radius: 50%; background: var(--bg); border: 2px solid var(--yellow); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 900; color: var(--yellow); margin-bottom: 18px; }
     .hiw-card h3 { font-size: 18px; font-weight: 800; margin-bottom: 10px; }
     .hiw-card p { font-size: 14px; color: var(--muted); line-height: 1.65; flex: 1; }
@@ -140,7 +140,7 @@
     .chk { width: 15px; height: 15px; border-radius: 50%; background: var(--ydim); border: 1.5px solid var(--yborder); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
 
     /* ── THE DADS ── */
-    .dads-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; flex: 1; margin-top: 18px; }
+    .dads-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; flex: 1 1 0; min-height: 0; overflow-y: auto; margin-top: 18px; padding-bottom: 8px; }
     .dad-card { background: var(--card); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 24px 22px; display: flex; flex-direction: column; transition: border-color .2s; }
     .dad-card.highlight { border-color: var(--yellow); background: var(--card2); }
     .dad-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
@@ -211,7 +211,8 @@
       .tab-panel { padding: 16px; }
       .home-grid { grid-template-columns: 1fr; }
       .home-right { display: none; }
-      .hiw-grid, .dads-grid { grid-template-columns: 1fr 1fr; overflow-y: auto; }
+      .hiw-grid { grid-template-columns: 1fr; }
+      .dads-grid { grid-template-columns: 1fr; overflow-y: auto; }
       .svc-grid { grid-template-columns: repeat(2,1fr); overflow-y: auto; }
       .pricing-grid { grid-template-columns: 1fr; overflow-y: auto; }
       .contractor-inner, .app-inner { grid-template-columns: 1fr; overflow-y: auto; }

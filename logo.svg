@@ -17,12 +17,12 @@
         font-weight="900"
         font-size="62"
         fill="#FFFFFF">D</text>
-  <!-- Tagline — textLength locks it inside the D's, lengthAdjust spreads spacing evenly -->
-  <text x="4" y="67"
+  <!-- Tagline -->
+  <text x="111" y="67"
         font-family="'Arial', 'Helvetica', sans-serif"
-        font-size="6.2"
+        font-size="5.6"
         font-weight="700"
         fill="#EDB800"
-        textLength="218"
-        lengthAdjust="spacing">REPAIR DAD  •  KNOW HOW DAD  •  COMMUNITY DAD</text>
+        text-anchor="middle"
+        letter-spacing="1.4">REPAIR DAD • KNOW HOW DAD • COMMUNITY DAD</text>
 </svg>

@@ -1,28 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 70">
+<svg width="100%" viewBox="0 0 690 220" xmlns="http://www.w3.org/2000/svg">
   <!-- D (left) -->
-  <text x="4" y="54"
-        font-family="'Arial Black', 'Impact', 'Haettenschweiler', sans-serif"
-        font-weight="900"
-        font-size="62"
-        fill="#FFFFFF">D</text>
-  <!-- A (gold) -->
-  <text x="90" y="54"
-        font-family="'Arial Black', 'Impact', 'Haettenschweiler', sans-serif"
-        font-weight="900"
-        font-size="62"
-        fill="#EDB800">A</text>
+  <text x="220" y="168" text-anchor="middle"
+        font-family="'Arial Black', 'Impact', sans-serif"
+        font-weight="900" font-size="148" fill="#ffffff">D</text>
+  <!-- A (center, gold) -->
+  <text x="345" y="168" text-anchor="middle"
+        font-family="'Arial Black', 'Impact', sans-serif"
+        font-weight="900" font-size="148" fill="#EDB800">A</text>
   <!-- D (right) -->
-  <text x="176" y="54"
-        font-family="'Arial Black', 'Impact', 'Haettenschweiler', sans-serif"
-        font-weight="900"
-        font-size="62"
-        fill="#FFFFFF">D</text>
+  <text x="470" y="168" text-anchor="middle"
+        font-family="'Arial Black', 'Impact', sans-serif"
+        font-weight="900" font-size="148" fill="#ffffff">D</text>
   <!-- Tagline -->
-  <text x="111" y="67"
-        font-family="'Arial', 'Helvetica', sans-serif"
-        font-size="5.6"
-        font-weight="700"
-        fill="#EDB800"
-        text-anchor="middle"
-        letter-spacing="1.4">REPAIR DAD • KNOW HOW DAD • COMMUNITY DAD</text>
+  <text x="345" y="205" text-anchor="middle"
+        font-family="'Arial', sans-serif"
+        font-weight="700" font-size="13" fill="#EDB800"
+        letter-spacing="2">REPAIR DAD · KNOW HOW DAD · COMMUNITY DAD</text>
 </svg>

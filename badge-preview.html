@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>DAD Profile Card — Badge Preview</title>
+<style>
+  body { background: #16181D; color: #fff; font-family: 'Arial', sans-serif; padding: 40px; }
+  h1 { color: #EDB800; font-size: 24px; margin-bottom: 8px; }
+  p.sub { color: #888; margin-bottom: 40px; font-size: 14px; }
+
+  .cards-row { display: flex; gap: 28px; flex-wrap: wrap; align-items: flex-start; }
+
+  .col { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .col-label { color: #EDB800; font-weight: 800; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; }
+
+  /* Profile card */
+  .profile-card {
+    background: #1E2028;
+    border: 1.5px solid #2a2d35;
+    border-radius: 16px;
+    padding: 24px 20px;
+    width: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* Avatar / photo placeholder */
+  .avatar-wrap { position: relative; width: 80px; height: 80px; }
+  .avatar-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #2a2d35;
+    border: 2px solid #3a3d45;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    color: #555;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+  }
+
+  /* Badge cluster bottom-right of avatar */
+  .badge-cluster {
+    position: absolute;
+    bottom: -6px;
+    right: -8px;
+    display: flex;
+    gap: 3px;
+  }
+
+  /* Badge tooltip wrapper */
+  .badge-tip {
+    position: relative;
+    cursor: pointer;
+  }
+  .badge-tip .tip {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #2a2d35;
+    border: 1px solid #3a3d45;
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 11px;
+    color: #ccc;
+    white-space: nowrap;
+    z-index: 10;
+    pointer-events: none;
+    line-height: 1.5;
+  }
+  .badge-tip .tip strong { color: #EDB800; display: block; margin-bottom: 2px; }
+  .badge-tip .tip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: #3a3d45;
+  }
+  .badge-tip:hover .tip { display: block; }
+
+  .badge-placeholder { width: 24px; height: 28px; opacity: 0.9; }
+
+  .name { font-weight: 800; font-size: 15px; color: #fff; }
+  .stars { color: #EDB800; font-size: 12px; }
+  .sessions { color: #888; font-size: 11px; margin-top: -6px; }
+  .price-tag {
+    background: #EDB800;
+    color: #16181D;
+    font-weight: 900;
+    font-size: 13px;
+    border-radius: 20px;
+    padding: 4px 14px;
+    margin-top: 2px;
+  }
+  .book-btn {
+    width: 100%;
+    background: transparent;
+    border: 1.5px solid #EDB800;
+    color: #EDB800;
+    font-weight: 800;
+    font-size: 13px;
+    border-radius: 10px;
+    padding: 8px 0;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    margin-top: 4px;
+  }
+  .book-btn:hover { background: #EDB800; color: #16181D; }
+
+  .divider { width: 1px; background: #2a2d35; height: 320px; margin: 0 8px; }
+</style>
+</head>
+<body>
+
+<h1>DAD Profile Cards</h1>
+<p class="sub">Three DAD types · Photo placeholder · Hover badges for tooltip · $50 fixed price</p>
+
+<div class="cards-row">
+
+  <!-- FOUNDING DAD -->
+  <div class="col">
+    <div class="col-label">Founding DAD</div>
+    <div class="profile-card">
+      <div class="avatar-wrap">
+        <div class="avatar-photo">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.5">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+          <span>PHOTO</span>
+        </div>
+        <div class="badge-cluster">
+          <div class="badge-tip">
+            <div class="tip">
+              <strong>Founding DAD</strong>
+              One of the first 150 DADs<br>on the platform
+            </div>
+            <svg class="badge-placeholder" viewBox="0 0 22 26" xmlns="http://www.w3.org/2000/svg">
+              <path d="M11 1 L21 4.5 L21 14 Q21 21 11 25 Q1 21 1 14 L1 4.5 Z" fill="#EF4444" stroke="#16181D" stroke-width="1.5"/>
+              <text x="11" y="17" text-anchor="middle" font-family="Arial Black" font-weight="900" font-size="11" fill="white">F</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="name">Mike D.</div>
+      <div class="stars">⭐ 4.9</div>
+      <div class="sessions">23 sessions</div>
+      <div class="price-tag">$50 / session</div>
+      <button class="book-btn">Book a Call</button>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PRO DAD -->
+  <div class="col">
+    <div class="col-label">Pro DAD</div>
+    <div class="profile-card">
+      <div class="avatar-wrap">
+        <div class="avatar-photo">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.5">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+          <span>PHOTO</span>
+        </div>
+        <div class="badge-cluster">
+          <div class="badge-tip">
+            <div class="tip">
+              <strong>Pro DAD</strong>
+              Verified expert with 100+<br>completed sessions
+            </div>
+            <svg class="badge-placeholder" viewBox="0 0 22 26" xmlns="http://www.w3.org/2000/svg">
+              <path d="M11 1 L21 4.5 L21 14 Q21 21 11 25 Q1 21 1 14 L1 4.5 Z" fill="#22C55E" stroke="#16181D" stroke-width="1.5"/>
+              <text x="11" y="17" text-anchor="middle" font-family="Arial Black" font-weight="900" font-size="11" fill="white">P</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="name">Tom R.</div>
+      <div class="stars">⭐ 4.8</div>
+      <div class="sessions">112 sessions</div>
+      <div class="price-tag">$50 / session</div>
+      <button class="book-btn">Book a Call</button>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- DAD (no badge) -->
+  <div class="col">
+    <div class="col-label">DAD</div>
+    <div class="profile-card">
+      <div class="avatar-wrap">
+        <div class="avatar-photo">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.5">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+          <span>PHOTO</span>
+        </div>
+        <!-- No badge cluster -->
+      </div>
+      <div class="name">James K.</div>
+      <div class="stars">⭐ 4.7</div>
+      <div class="sessions">8 sessions</div>
+      <div class="price-tag">$50 / session</div>
+      <button class="book-btn">Book a Call</button>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

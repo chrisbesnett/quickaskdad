@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Become a DAD — QuickAskDAD</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #16181D;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    min-height: 100vh;
+    padding: 0 0 60px;
+  }
+
+  /* NAV */
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 32px;
+    border-bottom: 1px solid #2a2d35;
+    background: #16181D;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-logo { height: 36px; }
+  .nav-back {
+    color: #EDB800;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 1px;
+  }
+  .nav-back:hover { text-decoration: underline; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(160deg, #1E2028 0%, #16181D 100%);
+    border-bottom: 1px solid #2a2d35;
+    padding: 48px 32px 40px;
+    text-align: center;
+  }
+  .hero-pill {
+    display: inline-block;
+    background: #EDB800;
+    color: #16181D;
+    font-weight: 900;
+    font-size: 11px;
+    letter-spacing: 3px;
+    border-radius: 20px;
+    padding: 5px 16px;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-size: clamp(28px, 5vw, 44px);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 14px;
+  }
+  .hero h1 span { color: #EDB800; }
+  .hero p {
+    color: #aaa;
+    font-size: 15px;
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* PAYOUT TIERS */
+  .tiers {
+    display: flex;
+    gap: 16px;
+    max-width: 780px;
+    margin: 40px auto 0;
+    padding: 0 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .tier-card {
+    flex: 1;
+    min-width: 200px;
+    background: #1E2028;
+    border: 1.5px solid #2a2d35;
+    border-radius: 14px;
+    padding: 20px 18px;
+    text-align: center;
+  }
+  .tier-card.featured { border-color: #EDB800; }
+  .tier-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 900;
+    font-size: 13px;
+    margin-bottom: 8px;
+  }
+  .tier-payout {
+    font-size: 28px;
+    font-weight: 900;
+    color: #EDB800;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .tier-sub { color: #666; font-size: 11px; margin-bottom: 10px; }
+  .tier-desc { color: #aaa; font-size: 12px; line-height: 1.6; }
+  .tier-tag {
+    display: inline-block;
+    background: #EDB800;
+    color: #16181D;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    border-radius: 10px;
+    padding: 2px 10px;
+    margin-bottom: 10px;
+  }
+
+  /* FORM WRAPPER */
+  .form-wrap {
+    max-width: 720px;
+    margin: 48px auto 0;
+    padding: 0 24px;
+  }
+
+  /* SECTION HEADERS */
+  .form-section {
+    margin-bottom: 40px;
+  }
+  .section-title {
+    color: #EDB800;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #2a2d35;
+  }
+
+  /* FIELDS */
+  .field-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+    min-width: 200px;
+  }
+  .field.full { flex: 1 1 100%; }
+  label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #aaa;
+    letter-spacing: 0.5px;
+  }
+  label span.req { color: #EDB800; margin-left: 2px; }
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  select,
+  textarea {
+    background: #1E2028;
+    border: 1.5px solid #2a2d35;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 14px;
+    padding: 12px 14px;
+    outline: none;
+    transition: border-color 0.15s;
+    width: 100%;
+    font-family: 'Arial', sans-serif;
+  }
+  input:focus, select:focus, textarea:focus { border-color: #EDB800; }
+  select option { background: #1E2028; }
+  textarea { resize: vertical; min-height: 90px; }
+  ::placeholder { color: #444; }
+
+  /* DAD TYPE SELECTION */
+  .type-grid {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .type-option { flex: 1; min-width: 180px; }
+  .type-option input[type="radio"] { display: none; }
+  .type-label {
+    display: block;
+    background: #1E2028;
+    border: 2px solid #2a2d35;
+    border-radius: 14px;
+    padding: 18px 16px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    text-align: center;
+  }
+  .type-option input:checked + .type-label {
+    border-color: #EDB800;
+    background: #222430;
+  }
+  .type-label:hover { border-color: #EDB800; }
+  .type-name {
+    font-weight: 900;
+    font-size: 16px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .type-earn {
+    color: #EDB800;
+    font-weight: 900;
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+  .type-earn-sub { color: #666; font-size: 11px; margin-bottom: 8px; }
+  .type-desc { color: #aaa; font-size: 12px; line-height: 1.6; }
+  .spots-left {
+    display: inline-block;
+    background: #EDB800;
+    color: #16181D;
+    font-size: 10px;
+    font-weight: 900;
+    border-radius: 10px;
+    padding: 2px 10px;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+
+  /* SKILL SLIDERS */
+  .skill-list { display: flex; flex-direction: column; gap: 22px; }
+  .skill-item {}
+  .skill-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .skill-name { font-size: 14px; font-weight: 700; color: #fff; }
+  .skill-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #EDB800;
+    min-width: 120px;
+    text-align: right;
+  }
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 6px;
+    background: #2a2d35;
+    outline: none;
+    cursor: pointer;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #EDB800;
+    cursor: pointer;
+    border: 2px solid #16181D;
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #EDB800;
+    cursor: pointer;
+    border: 2px solid #16181D;
+  }
+  .skill-scale {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+  }
+  .skill-scale span { font-size: 10px; color: #444; }
+
+  /* AVAILABILITY */
+  .avail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 10px;
+  }
+  .avail-option input[type="checkbox"] { display: none; }
+  .avail-box {
+    display: block;
+    background: #1E2028;
+    border: 1.5px solid #2a2d35;
+    border-radius: 10px;
+    padding: 12px 14px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+    color: #aaa;
+    transition: border-color 0.15s, color 0.15s;
+    text-align: center;
+  }
+  .avail-option input:checked + .avail-box {
+    border-color: #EDB800;
+    color: #EDB800;
+  }
+  .avail-box:hover { border-color: #EDB800; color: #EDB800; }
+
+  /* CERTIFICATION CHECKBOXES */
+  .cert-list { display: flex; flex-direction: column; gap: 14px; }
+  .cert-item { display: flex; align-items: flex-start; gap: 12px; cursor: pointer; }
+  .cert-item input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    accent-color: #EDB800;
+    margin-top: 1px;
+    cursor: pointer;
+  }
+  .cert-text { font-size: 13px; color: #ccc; line-height: 1.6; }
+  .cert-text strong { color: #fff; }
+
+  /* SUBMIT */
+  .submit-wrap { text-align: center; margin-top: 40px; }
+  .submit-btn {
+    background: #EDB800;
+    color: #16181D;
+    font-weight: 900;
+    font-size: 16px;
+    border: none;
+    border-radius: 14px;
+    padding: 16px 48px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: opacity 0.15s, transform 0.1s;
+    width: 100%;
+    max-width: 400px;
+  }
+  .submit-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+  .submit-note {
+    color: #555;
+    font-size: 12px;
+    margin-top: 12px;
+    line-height: 1.6;
+  }
+
+  /* MOBILE */
+  @media (max-width: 600px) {
+    .nav { padding: 14px 18px; }
+    .hero { padding: 36px 18px 32px; }
+    .tiers { padding: 0 18px; }
+    .form-wrap { padding: 0 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <img src="logo.svg" alt="QuickAskDAD" class="nav-logo"/>
+  <a href="index.html" class="nav-back">← Back to Site</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-pill">Be a DAD</div>
+  <h1>Share What You Know.<br><span>Help Where It Counts.</span></h1>
+  <p>You've spent years learning how to fix things, solve problems, and get things done. Someone out there needs exactly what you know. Become a DAD and get paid to help.</p>
+</div>
+
+<!-- PAYOUT TIERS -->
+<div class="tiers">
+
+  <div class="tier-card featured">
+    <div class="tier-badge">
+      <svg width="14" height="17" viewBox="0 0 22 26">
+        <path d="M11 1 L21 4.5 L21 14 Q21 21 11 25 Q1 21 1 14 L1 4.5 Z" fill="#EF4444"/>
+        <text x="11" y="17" text-anchor="middle" font-family="Arial Black" font-weight="900" font-size="11" fill="white">F</text>
+      </svg>
+      Founding DAD
+    </div>
+    <div class="spots-left">119 SPOTS LEFT</div>
+    <div class="tier-payout">$35</div>
+    <div class="tier-sub">per session</div>
+    <div class="tier-desc">One of the first 150 DADs on the platform. Highest payout. Priority in the call queue. Your name in the story of how this started.</div>
+  </div>
+
+  <div class="tier-card">
+    <div class="tier-badge">DAD</div>
+    <div class="tier-payout">$15</div>
+    <div class="tier-sub">per session</div>
+    <div class="tier-desc">Jump in, help people, build your reputation. Complete 100+ sessions and earn your Pro DAD status automatically.</div>
+  </div>
+
+  <div class="tier-card">
+    <div class="tier-badge">
+      <svg width="14" height="17" viewBox="0 0 22 26">
+        <path d="M11 1 L21 4.5 L21 14 Q21 21 11 25 Q1 21 1 14 L1 4.5 Z" fill="#22C55E"/>
+        <text x="11" y="17" text-anchor="middle" font-family="Arial Black" font-weight="900" font-size="11" fill="white">P</text>
+      </svg>
+      Pro DAD
+    </div>
+    <div class="tier-payout">$25</div>
+    <div class="tier-sub">per session</div>
+    <div class="tier-desc">Earned — not applied for. Complete 100+ sessions with strong ratings and Pro DAD status is automatically unlocked.</div>
+  </div>
+
+</div>
+
+<!-- FORM -->
+<div class="form-wrap">
+<form name="dad-application" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+  <input type="hidden" name="form-name" value="dad-application"/>
+  <input type="hidden" name="bot-field" style="display:none"/>
+
+  <!-- PERSONAL INFO -->
+  <div class="form-section">
+    <div class="section-title">Personal Information</div>
+    <div class="field-row">
+      <div class="field">
+        <label>First Name <span class="req">*</span></label>
+        <input type="text" name="first-name" placeholder="Chris" required/>
+      </div>
+      <div class="field">
+        <label>Last Name <span class="req">*</span></label>
+        <input type="text" name="last-name" placeholder="Smith" required/>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>Email Address <span class="req">*</span></label>
+        <input type="email" name="email" placeholder="you@email.com" required/>
+      </div>
+      <div class="field">
+        <label>Phone Number <span class="req">*</span></label>
+        <input type="tel" name="phone" placeholder="(555) 000-0000" required/>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>Region <span class="req">*</span></label>
+        <select name="region" required>
+          <option value="" disabled selected>Select your region</option>
+          <option>Midwest</option>
+          <option>Southeast</option>
+          <option>Northeast</option>
+          <option>Southwest</option>
+          <option>West</option>
+          <option>Northwest</option>
+        </select>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field full">
+        <label>Tell us about yourself <span class="req">*</span></label>
+        <textarea name="bio" placeholder="What's your background? What have you built, fixed, or figured out over the years? What makes you a DAD?" required></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAD TYPE -->
+  <div class="form-section">
+    <div class="section-title">Choose Your DAD Type</div>
+    <div class="type-grid">
+
+      <div class="type-option">
+        <input type="radio" name="dad-type" id="type-founding" value="Founding DAD" required/>
+        <label class="type-label" for="type-founding">
+          <div class="type-name">
+            <svg width="16" height="19" viewBox="0 0 22 26">
+              <path d="M11 1 L21 4.5 L21 14 Q21 21 11 25 Q1 21 1 14 L1 4.5 Z" fill="#EF4444"/>
+              <text x="11" y="17" text-anchor="middle" font-family="Arial Black" font-weight="900" font-size="11" fill="white">F</text>
+            </svg>
+            Founding DAD
+          </div>
+          <div class="type-earn">$35<span style="font-size:14px;color:#888">/session</span></div>
+          <div class="type-earn-sub">119 spots remaining</div>
+          <div class="type-desc">Priority call queue. Highest payout. You were here first.</div>
+        </label>
+      </div>
+
+      <div class="type-option">
+        <input type="radio" name="dad-type" id="type-dad" value="DAD"/>
+        <label class="type-label" for="type-dad">
+          <div class="type-name">DAD</div>
+          <div class="type-earn">$15<span style="font-size:14px;color:#888">/session</span></div>
+          <div class="type-earn-sub">Unlimited spots</div>
+          <div class="type-desc">Help people. Build your rep. Hit 100 sessions → Pro DAD unlocked automatically.</div>
+        </label>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="form-section">
+    <div class="section-title">Your Skills</div>
+    <p style="color:#888; font-size:13px; margin-bottom:24px; line-height:1.6;">Rate your confidence in each area. Be honest — you'll only get matched to calls you can actually help with. 0 = Not my thing &nbsp;·&nbsp; 5 = Expert.</p>
+    <div class="skill-list">
+
+      <div class="skill-item">
+        <div class="skill-header">
+          <span class="skill-name">🔧 Plumbing</span>
+          <span class="skill-label" id="label-plumbing">Not my thing</span>
+        </div>
+        <input type="range" min="0" max="5" value="0" name="skill-plumbing" oninput="updateSkill('plumbing', this.value)"/>
+        <div class="skill-scale"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+      </div>
+
+      <div class="skill-item">
+        <div class="skill-header">
+          <span class="skill-name">⚡ Electrical</span>
+          <span class="skill-label" id="label-electrical">Not my thing</span>
+        </div>
+        <input type="range" min="0" max="5" value="0" name="skill-electrical" oninput="updateSkill('electrical', this.value)"/>
+        <div class="skill-scale"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+      </div>
+
+      <div class="skill-item">
+        <div class="skill-header">
+          <span class="skill-name">❄️ HVAC / Heating & Cooling</span>
+          <span class="skill-label" id="label-hvac">Not my thing</span>
+        </div>
+        <input type="range" min="0" max="5" value="0" name="skill-hvac" oninput="updateSkill('hvac', this.value)"/>
+        <div class="skill-scale"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+      </div>
+
+      <div class="skill-item">
+        <div class="skill-header">
+          <span class="skill-name">🪚 Carpentry & Woodworking</span>
+          <span class="skill-label" id="label-carpentry">Not my thing</span>
+        </div>
+        <input type="range" min="0" max="5" value="0" name="skill-carpentry" oninput="updateSkill('carpentry', this.value)"/>
+        <div class="skill-scale"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+      </div>
+
+      <div class="skill-item">
+        <div class="skill-header">
+          <span class="skill-name">🌿 Landscaping & Outdoor</span>
+          <span class="skill-label" id="label-landscaping">Not my thing</span>
+        </div>
+        <input type="range" min="0" max="5" value="0" name="skill-landscaping" oninput="updateSkill('landscaping', this.value)"/>
+        <div class="skill-scale"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+      </div>
+
+      <div class="skill-item">
+        <div class="skill-header">
+          <span class="skill-name">🚗 Automotive</span>
+          <span class="skill-label" id="label-automotive">Not my thing</span>
+        </div>
+        <input type="range" min="0" max="5" value="0" name="skill-automotive" oninput="updateSkill('automotive', this.value)"/>
+        <div class="skill-scale"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+      </div>
+
+      <div class="skill-item">
+        <div class="skill-header">
+          <span class="skill-name">🎨 Painting & Drywall</span>
+          <span class="skill-label" id="label-painting">Not my thing</span>
+        </div>
+        <input type="range" min="0" max="5" value="0" name="skill-painting" oninput="updateSkill('painting', this.value)"/>
+        <div class="skill-scale"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+      </div>
+
+      <div class="skill-item">
+        <div class="skill-header">
+          <span class="skill-name">👕 Wardrobe & Home Life</span>
+          <span class="skill-label" id="label-wardrobe">Not my thing</span>
+        </div>
+        <input type="range" min="0" max="5" value="0" name="skill-wardrobe" oninput="updateSkill('wardrobe', this.value)"/>
+        <div class="skill-scale"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+      </div>
+
+      <div class="skill-item">
+        <div class="skill-header">
+          <span class="skill-name">🏠 General Home Repair</span>
+          <span class="skill-label" id="label-general">Not my thing</span>
+        </div>
+        <input type="range" min="0" max="5" value="0" name="skill-general" oninput="updateSkill('general', this.value)"/>
+        <div class="skill-scale"><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- AVAILABILITY -->
+  <div class="form-section">
+    <div class="section-title">General Availability</div>
+    <p style="color:#888; font-size:13px; margin-bottom:18px; line-height:1.6;">When are you typically available to take calls? Check all that apply. You'll receive a push notification when someone needs your help — accept when you can.</p>
+    <div class="avail-grid">
+      <div class="avail-option">
+        <input type="checkbox" name="avail-weekday-morning" id="a1"/>
+        <label class="avail-box" for="a1">Weekday Mornings</label>
+      </div>
+      <div class="avail-option">
+        <input type="checkbox" name="avail-weekday-afternoon" id="a2"/>
+        <label class="avail-box" for="a2">Weekday Afternoons</label>
+      </div>
+      <div class="avail-option">
+        <input type="checkbox" name="avail-weekday-evening" id="a3"/>
+        <label class="avail-box" for="a3">Weekday Evenings</label>
+      </div>
+      <div class="avail-option">
+        <input type="checkbox" name="avail-weekend-morning" id="a4"/>
+        <label class="avail-box" for="a4">Weekend Mornings</label>
+      </div>
+      <div class="avail-option">
+        <input type="checkbox" name="avail-weekend-afternoon" id="a5"/>
+        <label class="avail-box" for="a5">Weekend Afternoons</label>
+      </div>
+      <div class="avail-option">
+        <input type="checkbox" name="avail-weekend-evening" id="a6"/>
+        <label class="avail-box" for="a6">Weekend Evenings</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- SELF-CERTIFICATION -->
+  <div class="form-section">
+    <div class="section-title">Self-Certification</div>
+    <p style="color:#888; font-size:13px; margin-bottom:20px; line-height:1.6;">All DADs must agree to the following before joining the platform. These are required.</p>
+    <div class="cert-list">
+
+      <label class="cert-item">
+        <input type="checkbox" name="cert-felony" required/>
+        <span class="cert-text"><strong>No felony conviction.</strong> I certify that I have not been convicted of a felony offense.</span>
+      </label>
+
+      <label class="cert-item">
+        <input type="checkbox" name="cert-misconduct" required/>
+        <span class="cert-text"><strong>No sexual misconduct.</strong> I certify that I have not been found guilty of or charged with sexual misconduct of any kind.</span>
+      </label>
+
+      <label class="cert-item">
+        <input type="checkbox" name="cert-recording" required/>
+        <span class="cert-text"><strong>Session recording consent.</strong> I understand and agree that all video sessions on QuickAskDAD are recorded for quality, safety, and dispute resolution purposes. Customers are notified of this at the start of every session.</span>
+      </label>
+
+      <label class="cert-item">
+        <input type="checkbox" name="cert-standards" required/>
+        <span class="cert-text"><strong>Community standards.</strong> I agree to conduct myself with professionalism, honesty, and respect in every session. I understand that violations of community standards may result in removal from the platform.</span>
+      </label>
+
+      <label class="cert-item">
+        <input type="checkbox" name="cert-identity" required/>
+        <span class="cert-text"><strong>Identity verification.</strong> I agree to complete a one-time identity verification through Stripe Identity as part of the DAD onboarding process. This protects both DADs and customers on the platform.</span>
+      </label>
+
+      <label class="cert-item">
+        <input type="checkbox" name="cert-truth" required/>
+        <span class="cert-text"><strong>Truth and accuracy.</strong> I certify that all information submitted in this application is true and accurate to the best of my knowledge. I understand that false statements may result in permanent removal from the platform.</span>
+      </label>
+
+    </div>
+  </div>
+
+  <!-- SUBMIT -->
+  <div class="submit-wrap">
+    <button type="submit" class="submit-btn">SUBMIT MY APPLICATION</button>
+    <p class="submit-note">
+      Applications are reviewed manually. You'll hear back within 48 hours.<br>
+      Questions? <a href="mailto:info@quickaskdad.com" style="color:#EDB800;">info@quickaskdad.com</a>
+    </p>
+  </div>
+
+</form>
+</div>
+
+<script>
+  const SKILL_LABELS = [
+    'Not my thing',
+    'I can try',
+    "I've done it",
+    "I'm comfortable",
+    "I'm good at this",
+    'Expert'
+  ];
+
+  function updateSkill(key, val) {
+    document.getElementById('label-' + key).textContent = SKILL_LABELS[parseInt(val)];
+  }
+</script>
+
+</body>
+</html>

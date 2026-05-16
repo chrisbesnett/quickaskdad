@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Welcome, DAD — QuickAskDAD</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #16181D;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    min-height: 100vh;
+    padding-bottom: 60px;
+  }
+
+  /* NAV */
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 32px;
+    border-bottom: 1px solid #2a2d35;
+  }
+  .nav-logo { height: 36px; }
+
+  /* HERO */
+  .hero {
+    text-align: center;
+    padding: 60px 24px 48px;
+    border-bottom: 1px solid #2a2d35;
+  }
+  .hero-pill {
+    display: inline-block;
+    background: #EDB800;
+    color: #16181D;
+    font-weight: 900;
+    font-size: 11px;
+    letter-spacing: 3px;
+    border-radius: 20px;
+    padding: 5px 16px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 6vw, 52px);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .hero h1 span { color: #EDB800; }
+  .hero p {
+    color: #aaa;
+    font-size: 16px;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* STEPS */
+  .steps-wrap {
+    max-width: 680px;
+    margin: 56px auto 0;
+    padding: 0 24px;
+  }
+  .section-label {
+    color: #EDB800;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #2a2d35;
+  }
+  .steps { display: flex; flex-direction: column; gap: 20px; }
+  .step {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    background: #1E2028;
+    border: 1.5px solid #2a2d35;
+    border-radius: 14px;
+    padding: 22px 20px;
+    transition: border-color 0.2s;
+  }
+  .step:hover { border-color: #EDB800; }
+  .step-num {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border-radius: 50%;
+    background: #EDB800;
+    color: #16181D;
+    font-weight: 900;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .step-content {}
+  .step-title {
+    font-weight: 900;
+    font-size: 16px;
+    margin-bottom: 6px;
+    color: #fff;
+  }
+  .step-desc {
+    color: #aaa;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .step-desc a {
+    color: #EDB800;
+    text-decoration: none;
+    font-weight: 700;
+  }
+  .step-desc a:hover { text-decoration: underline; }
+  .step-tag {
+    display: inline-block;
+    background: #2a2d35;
+    color: #EDB800;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    border-radius: 8px;
+    padding: 3px 10px;
+    margin-top: 8px;
+  }
+
+  /* PAYOUT */
+  .payout-wrap {
+    max-width: 680px;
+    margin: 48px auto 0;
+    padding: 0 24px;
+  }
+  .payout-card {
+    background: #1E2028;
+    border: 1.5px solid #EDB800;
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+  }
+  .payout-label {
+    color: #888;
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .payout-amount {
+    color: #EDB800;
+    font-size: 56px;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .payout-sub {
+    color: #666;
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+  .payout-detail {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .payout-item { text-align: center; }
+  .payout-item-val { color: #fff; font-weight: 900; font-size: 18px; }
+  .payout-item-key { color: #666; font-size: 11px; margin-top: 2px; }
+
+  /* RULES */
+  .rules-wrap {
+    max-width: 680px;
+    margin: 48px auto 0;
+    padding: 0 24px;
+  }
+  .rules {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+  }
+  .rule {
+    background: #1E2028;
+    border: 1.5px solid #2a2d35;
+    border-radius: 12px;
+    padding: 18px 16px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .rule-icon { font-size: 20px; min-width: 24px; }
+  .rule-text { font-size: 13px; color: #aaa; line-height: 1.6; }
+  .rule-text strong { color: #fff; display: block; margin-bottom: 2px; }
+
+  /* CTA */
+  .cta-wrap {
+    max-width: 680px;
+    margin: 56px auto 0;
+    padding: 0 24px;
+    text-align: center;
+  }
+  .cta-wrap h2 { font-size: 24px; font-weight: 900; margin-bottom: 8px; }
+  .cta-wrap h2 span { color: #EDB800; }
+  .cta-wrap p { color: #888; font-size: 14px; margin-bottom: 28px; }
+  .cta-btn {
+    display: inline-block;
+    background: #EDB800;
+    color: #16181D;
+    font-weight: 900;
+    font-size: 15px;
+    border-radius: 14px;
+    padding: 16px 40px;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: opacity 0.15s, transform 0.1s;
+  }
+  .cta-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+  /* SIGNATURE */
+  .sig-wrap {
+    max-width: 680px;
+    margin: 48px auto 0;
+    padding: 0 24px;
+  }
+  .sig {
+    background: #1E2028;
+    border: 1.5px solid #2a2d35;
+    border-radius: 14px;
+    padding: 28px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .sig-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #EDB800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 900;
+    color: #16181D;
+    min-width: 56px;
+  }
+  .sig-name { font-weight: 900; font-size: 16px; margin-bottom: 2px; }
+  .sig-title { color: #888; font-size: 13px; margin-bottom: 6px; }
+  .sig-msg { color: #ccc; font-size: 14px; line-height: 1.6; }
+
+  @media (max-width: 600px) {
+    .hero { padding: 40px 18px 36px; }
+    .steps-wrap, .payout-wrap, .rules-wrap, .cta-wrap, .sig-wrap { padding: 0 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <img src="logo.svg" alt="QuickAskDAD" class="nav-logo"/>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-pill">You're Approved</div>
+  <h1>Welcome to the<br><span>DAD Network.</span></h1>
+  <p>You're now part of something real. Here's everything you need to get started and take your first call.</p>
+</div>
+
+<!-- STEPS -->
+<div class="steps-wrap">
+  <div class="section-label">Your Next Steps</div>
+  <div class="steps">
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <div class="step-title">Verify Your Identity</div>
+        <div class="step-desc">Complete a one-time identity check through Stripe Identity. Takes about 2 minutes on your phone. You'll receive a separate link from Stripe — check your inbox.</div>
+        <span class="step-tag">REQUIRED BEFORE FIRST CALL</span>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <div class="step-title">Add QuickAskDAD to Your Home Screen</div>
+        <div class="step-desc">Open <a href="https://quickaskdad.com">QuickAskDAD.com</a> on your phone. Tap the share icon and select <strong>"Add to Home Screen."</strong> This is your app — no App Store needed.</div>
+        <span class="step-tag">WORKS ON IPHONE + ANDROID</span>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <div class="step-title">Allow Push Notifications</div>
+        <div class="step-desc">When a customer needs your help, you'll get a push notification on your phone. Tap accept and you're connected instantly via live video. You have 30 seconds to answer before it goes to the next DAD.</div>
+        <span class="step-tag">THIS IS HOW CALLS COME TO YOU</span>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <div class="step-title">Take Your First Call</div>
+        <div class="step-desc">You'll only be matched to calls that fit your skill ratings. Be yourself. Be helpful. That's it. After the call, the customer leaves a rating and your payout is sent automatically.</div>
+        <span class="step-tag">YOU'VE GOT THIS</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- PAYOUT -->
+<div class="payout-wrap">
+  <div style="margin-top:48px;">
+    <div class="section-label">Your Payout</div>
+    <div class="payout-card">
+      <div class="payout-label">FOUNDING DAD — PER SESSION</div>
+      <div class="payout-amount">$35</div>
+      <div class="payout-sub">Paid automatically 24 hours after each completed call via Stripe</div>
+      <div class="payout-detail">
+        <div class="payout-item">
+          <div class="payout-item-val">$50</div>
+          <div class="payout-item-key">Customer pays</div>
+        </div>
+        <div class="payout-item">
+          <div class="payout-item-val">$35</div>
+          <div class="payout-item-key">You earn</div>
+        </div>
+        <div class="payout-item">
+          <div class="payout-item-val">24hrs</div>
+          <div class="payout-item-key">Payout window</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RULES -->
+<div class="rules-wrap">
+  <div style="margin-top:48px;">
+    <div class="section-label">Community Standards</div>
+    <div class="rules">
+      <div class="rule">
+        <div class="rule-icon">🤝</div>
+        <div class="rule-text"><strong>Be honest</strong>If you don't know something, say so. Customers trust you with real problems.</div>
+      </div>
+      <div class="rule">
+        <div class="rule-icon">⏱</div>
+        <div class="rule-text"><strong>Answer fast</strong>You have 30 seconds to accept a call. Miss too many and your priority drops.</div>
+      </div>
+      <div class="rule">
+        <div class="rule-icon">🔴</div>
+        <div class="rule-text"><strong>Sessions are recorded</strong>Every call is recorded for safety and dispute resolution. Customers are notified.</div>
+      </div>
+      <div class="rule">
+        <div class="rule-icon">⭐</div>
+        <div class="rule-text"><strong>Ratings matter</strong>100 sessions with strong ratings earns you Pro DAD status and a $25/session payout.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-wrap">
+  <h2>Ready to take your<br><span>first call?</span></h2>
+  <p>Head to the site, add it to your home screen, and you're ready.</p>
+  <a href="https://quickaskdad.com" class="cta-btn">GO TO QUICKASKDAD.COM →</a>
+</div>
+
+<!-- SIGNATURE -->
+<div class="sig-wrap">
+  <div class="sig">
+    <div class="sig-avatar">CB</div>
+    <div>
+      <div class="sig-name">Chris Besnett</div>
+      <div class="sig-title">Founder, QuickAskDAD</div>
+      <div class="sig-msg">This platform is personal to me. I'm glad you're here. If you ever have questions, reply to your approval email or reach out at info@quickaskdad.com.</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
